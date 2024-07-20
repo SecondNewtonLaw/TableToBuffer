@@ -63,7 +63,7 @@ Deserializers.Deserializers = table.freeze({
 		local animationId = buffer.readstring(buf, 0x8, animationIdSize)
 
 		local nameSize = buffer.readi32(buf, 0x8 + animationIdSize)
-		local name = buffer.readstring(buf, 0x8 + animationIdSize + 0x8, nameSize)
+		local name = buffer.readstring(buf, 0x8 + animationIdSize + 0x4, nameSize)
 
 		local animation = Instance.new("Animation")
 		animation.AnimationId = animationId

@@ -7,7 +7,7 @@ local InstanceToBuffer = {}
 InstanceToBuffer.Types = require(script.Types)
 
 function InstanceToBuffer.CanBeSerialized<T>(instance: T): boolean
-	if type(instance) == "userdata" then
+	if type(instance) == "userdata" or type(instance) == "vector" then
 		return true
 	end
 

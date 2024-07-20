@@ -60,14 +60,14 @@ Serializers.Serializers = table.freeze({
 	[MagicValues.TypeToMagic.Animation] = function(animation: Animation): buffer
 		local animationId = animation.AnimationId
 		local name = animation.Name
-		local buf = buffer.create(0x8)
+		local buf = buffer.create(0x8 + #animationId + 0x4 + #name)
 		buffer.writei32(buf, 0x0, MagicValues.TypeToMagic.Animation)
 
 		buffer.writei32(buf, 0x4, #animationId)
 		buffer.writestring(buf, 0x8, animationId, #animationId)
 
-		buffer.writei32(buf, 0x8 + #animationId + 0x4, #name)
-		buffer.writestring(buf, 0x8 + #animationId + 0x8, name, #name)
+		buffer.writei32(buf, 0x8 + #animationId, #name)
+		buffer.writestring(buf, 0x8 + #animationId + 0x4, name, #name)
 
 		return buf
 	end,
@@ -76,7 +76,10 @@ Serializers.Serializers = table.freeze({
 } :: { [number]: (obj: any) -> buffer })
 
 function Serializers.GetMagicForUserdata(instance: any)
-	assert(type(instance) == "userdata", "Invalid input parameter, input must be of type userdata")
+	assert(
+		type(instance) == "userdata" or type(instance) == "vector",
+		"Invalid input parameter, input must be of type userdata or vector"
+	)
 
 	local typeName = ""
 	if typeof(instance) == "Instance" then
