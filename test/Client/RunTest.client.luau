@@ -26,6 +26,44 @@ do
 	end
 
 	do
+		print("--- Testing Vector2 serialization ---")
+		local vector = Vector2.new(784292.47211222, 8123.31112812)
+		assert(
+			instanceToBuffer.CanBeSerialized(vector),
+			"Test failed: Cannot serialize Vector2, when they should be serializable."
+		)
+		local success: boolean
+		local deserializedVector: Vector2 | unknown
+		success, deserializedVector = instanceToBuffer.TryDeserialize(instanceToBuffer.Serialize(vector))
+
+		assert(success, `Operation was not marked as a success. Error Message: {tostring(deserializedVector)}`)
+		assert(type(deserializedVector) == "userdata", "When deserialized, the Vector2 is not of type userdata.")
+		assert(deserializedVector == vector, "The serialized and deserialized vectors are not the same.")
+		print("Original: ", vector)
+		print("From Serialized: ", deserializedVector)
+		print("--- Testing ended for Vector2 serialization ---")
+	end
+
+	do
+		print("--- Testing Vector2int16 serialization ---")
+		local vector = Vector2int16.new(1014, 472)
+		assert(
+			instanceToBuffer.CanBeSerialized(vector),
+			"Test failed: Cannot serialize Vector3int16, when they should be serializable."
+		)
+		local success: boolean
+		local deserializedVector: Vector2int16 | unknown
+		success, deserializedVector = instanceToBuffer.TryDeserialize(instanceToBuffer.Serialize(vector))
+
+		assert(success, `Operation was not marked as a success. Error Message: {tostring(deserializedVector)}`)
+		assert(type(deserializedVector) == "userdata", "When deserialized, the Vector2int16 is not of type userdata.")
+		assert(deserializedVector == vector, "The serialized and deserialized vectors are not the same.")
+		print("Original: ", vector)
+		print("From Serialized: ", deserializedVector)
+		print("--- Testing ended for Vector2int16 serialization ---")
+	end
+
+	do
 		print("--- Testing Vector3 serialization ---")
 		local vector = Vector3.new(21392.412722, 81238.31263812, 82981.3276123612)
 		assert(
@@ -42,6 +80,25 @@ do
 		print("Original: ", vector)
 		print("From Serialized: ", deserializedVector)
 		print("--- Testing ended for Vector3 serialization ---")
+	end
+
+	do
+		print("--- Testing Vector3int16 serialization ---")
+		local vector = Vector3int16.new(1004, 47712, 27414)
+		assert(
+			instanceToBuffer.CanBeSerialized(vector),
+			"Test failed: Cannot serialize Vector3int16, when they should be serializable."
+		)
+		local success: boolean
+		local deserializedVector: Vector3int16 | unknown
+		success, deserializedVector = instanceToBuffer.TryDeserialize(instanceToBuffer.Serialize(vector))
+
+		assert(success, `Operation was not marked as a success. Error Message: {tostring(deserializedVector)}`)
+		assert(type(deserializedVector) == "userdata", "When deserialized, the Vector3int16 is not of type userdata.")
+		assert(deserializedVector == vector, "The serialized and deserialized vectors are not the same.")
+		print("Original: ", vector)
+		print("From Serialized: ", deserializedVector)
+		print("--- Testing ended for Vector3int16 serialization ---")
 	end
 
 	do

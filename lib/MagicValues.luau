@@ -12,6 +12,10 @@ MagicValues.TypeToMagic = {
 	CFrame = 0x0,
 	Vector3 = 0x2,
 	DateTime = 0x4,
+	Vector2 = 0x6,
+	Vector2int16 = 0x8,
+	Vector3int16 = 0xA,
+
 
 	-- typeof(x) == "Instance" and x.ClassName ==
 	Player = 0x10002,

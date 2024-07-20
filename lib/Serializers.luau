@@ -44,6 +44,34 @@ Serializers.Serializers = table.freeze({
 		return buf
 	end,
 
+	[MagicValues.TypeToMagic.Vector2] = function(vec: Vector2): buffer
+		local buf = buffer.create(0xC + 0x8)
+		buffer.writei32(buf, 0x0, MagicValues.TypeToMagic.Vector2)
+		buffer.writef64(buf, 0x4, vec.X)
+		buffer.writef64(buf, 0xC, vec.Y)
+
+		return buf
+	end,
+
+	[MagicValues.TypeToMagic.Vector3int16] = function(vec: Vector3): buffer
+		local buf = buffer.create(0x8 + 0x2)
+		buffer.writei32(buf, 0x0, MagicValues.TypeToMagic.Vector3int16)
+		buffer.writei16(buf, 0x4, vec.X)
+		buffer.writei16(buf, 0x6, vec.Y)
+		buffer.writei16(buf, 0x8, vec.Z)
+
+		return buf
+	end,
+
+	[MagicValues.TypeToMagic.Vector2int16] = function(vec: Vector2): buffer
+		local buf = buffer.create(0x6 + 0x2)
+		buffer.writei32(buf, 0x0, MagicValues.TypeToMagic.Vector2int16)
+		buffer.writei16(buf, 0x4, vec.X)
+		buffer.writei16(buf, 0x6, vec.Y)
+
+		return buf
+	end,
+
 	--#endregion typeof(x) ==
 
 	--#region typeof(x) == "Instance" and x.ClassName ==

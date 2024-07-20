@@ -41,6 +41,30 @@ Deserializers.Deserializers = table.freeze({
 
 		return Vector3.new(x, y, z)
 	end,
+
+	[MagicValues.TypeToMagic.Vector2] = function(buf: buffer): Vector2
+		assert(buffer.readi32(buf, 0x0) == MagicValues.TypeToMagic.Vector2, "Invalid magic for buffer.")
+		local x = buffer.readf64(buf, 0x4)
+		local y = buffer.readf64(buf, 0xC)
+
+		return Vector2.new(x, y)
+	end,
+
+	[MagicValues.TypeToMagic.Vector3int16] = function(buf: buffer): Vector3int16
+		assert(buffer.readi32(buf, 0x0) == MagicValues.TypeToMagic.Vector3int16, "Invalid magic for buffer.")
+		local x = buffer.readi16(buf, 0x4)
+		local y = buffer.readi16(buf, 0x6)
+		local z = buffer.readi16(buf, 0x8)
+
+		return Vector3int16.new(x, y, z)
+	end,
+	[MagicValues.TypeToMagic.Vector2int16] = function(buf: buffer): Vector2int16
+		assert(buffer.readi32(buf, 0x0) == MagicValues.TypeToMagic.Vector2int16, "Invalid magic for buffer.")
+		local x = buffer.readi16(buf, 0x4)
+		local y = buffer.readi16(buf, 0x6)
+
+		return Vector2int16.new(x, y)
+	end,
 	--#endregion typeof(x) ==
 
 	--#region typeof(x) == "Instance" and x.ClassName ==
