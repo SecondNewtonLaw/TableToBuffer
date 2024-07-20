@@ -1,0 +1,11 @@
+{
+  "name": "InstanceToBuffer",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "lib/"
+      }
+    }
+  }
+}
