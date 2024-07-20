@@ -15,7 +15,7 @@ MagicValues.TypeToMagic = {
 	Vector2 = 0x6,
 	Vector2int16 = 0x8,
 	Vector3int16 = 0xA,
-
+	EnumItem = 0xC,
 
 	-- typeof(x) == "Instance" and x.ClassName ==
 	Player = 0x10002,

@@ -124,12 +124,46 @@ do
 				and (deserializedAnimation :: Animation).Name == testAnimation.Name,
 			"The serialized and deserialized Animation Name and AnimationId are not the same."
 		)
-		assert(deserializedAnimation ~= testAnimation, "The Animations are on the same.")
+		assert(deserializedAnimation ~= testAnimation, "The Animations are the same.")
 		print("Original Name: ", testAnimation.Name)
 		print("Original AnimationId: ", testAnimation.AnimationId)
 		print("From Serialized Name: ", (deserializedAnimation :: Animation).Name)
 		print("From Serialized AnimationId: ", (deserializedAnimation :: Animation).AnimationId)
 
 		print("--- Testing ended for Animation serialization ---")
+	end
+
+	do
+		print("--- Testing EnumItem serialization ---")
+
+		local keycodeE = Enum.KeyCode.E
+
+		assert(
+			instanceToBuffer.CanBeSerialized(keycodeE),
+			"Test failed: Cannot serialize EnumItem, when they should be serializable."
+		)
+
+		local success: boolean
+		local deserializedKeycode: EnumItem | unknown
+		success, deserializedKeycode = instanceToBuffer.TryDeserialize(instanceToBuffer.Serialize(keycodeE))
+
+		assert(success, `Operation was not marked as a success. Error Message: {tostring(deserializedKeycode)}`)
+		assert(type(deserializedKeycode) == "userdata", "When deserialized, the EnumItem is not of type userdata.")
+		assert(
+			(deserializedKeycode :: EnumItem).Name == keycodeE.Name
+				and (deserializedKeycode :: EnumItem).Value == keycodeE.Value,
+			"The serialized and deserialized EnumItem Name and Value are not the same."
+		)
+		assert(deserializedKeycode == keycodeE, "The the EnumItems are not the dsame.")
+
+		print("Original KeyCode (Name): ", keycodeE.Name)
+		print("Original KeyCode (Value): ", keycodeE.Value)
+		print("Original KeyCode (EnumType): ", keycodeE.EnumType)
+
+		print("Deserialized KeyCode (Name): ", (deserializedKeycode :: EnumItem).Name)
+		print("Deserialized KeyCode (Value): ", (deserializedKeycode :: EnumItem).Value)
+		print("Deserialized KeyCode (EnumType): ", (deserializedKeycode :: EnumItem).EnumType)
+
+		print("--- Testing ended for EnumItem serialization ---")
 	end
 end

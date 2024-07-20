@@ -58,12 +58,31 @@ Deserializers.Deserializers = table.freeze({
 
 		return Vector3int16.new(x, y, z)
 	end,
+
 	[MagicValues.TypeToMagic.Vector2int16] = function(buf: buffer): Vector2int16
 		assert(buffer.readi32(buf, 0x0) == MagicValues.TypeToMagic.Vector2int16, "Invalid magic for buffer.")
 		local x = buffer.readi16(buf, 0x4)
 		local y = buffer.readi16(buf, 0x6)
 
 		return Vector2int16.new(x, y)
+	end,
+
+	[MagicValues.TypeToMagic.EnumItem] = function(buf: buffer): EnumItem
+		assert(buffer.readi32(buf, 0x0) == MagicValues.TypeToMagic.EnumItem, "Invalid magic for buffer.")
+
+		local enumItemValue = buffer.readi32(buf, 0x4)
+		local enumNameSize = buffer.readi32(buf, 0x4 + 0x4)
+		local enumName = buffer.readstring(buf, 0x4 + 0x4 + 0x4, enumNameSize)
+
+		local enum
+		for _, v in (Enum :: any)[enumName]:GetEnumItems() do
+			if v.Value == enumItemValue then
+				enum = v
+				break
+			end
+		end
+
+		return enum
 	end,
 	--#endregion typeof(x) ==
 

@@ -12,6 +12,7 @@ All of the serializers and deserializers were manually written, no automatic too
     - CFrame
     - Animation
     - Player
+    - EnumItem
 
 This will ONLY serialize when `type(x)` is either `userdata` or `vector`, it will not do anything to `table`s or other primitives.
 

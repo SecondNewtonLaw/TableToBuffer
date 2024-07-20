@@ -72,6 +72,20 @@ Serializers.Serializers = table.freeze({
 		return buf
 	end,
 
+	[MagicValues.TypeToMagic.EnumItem] = function(enumItem: EnumItem): buffer
+		local enumName = tostring(enumItem.EnumType)
+
+		local buf = buffer.create(0x4 + 0x4 + 0x4 + #enumName)
+		buffer.writei32(buf, 0x0, MagicValues.TypeToMagic.EnumItem)
+
+		buffer.writei32(buf, 0x4, enumItem.Value)
+
+		buffer.writei32(buf, 0x4 + 0x4, #enumName)
+		buffer.writestring(buf, 0x4 + 0x4 + 0x4, enumName, #enumName)
+
+		return buf
+	end,
+
 	--#endregion typeof(x) ==
 
 	--#region typeof(x) == "Instance" and x.ClassName ==
