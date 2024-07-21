@@ -28,6 +28,7 @@ type Serializer = {
 	Serialize: (obj: {
 		[string]: any,
 	}) -> buffer,
+	GetActionList: () -> { Action },
 }
 
 function deserializable.Create()
@@ -252,6 +253,10 @@ function deserializable.Create()
 
 			GetBufferSize = function(): number
 				return bufferSize
+			end,
+
+			GetActionList = function(): { Action }
+				return actionList
 			end,
 
 			Deserialize = function(buf: buffer)
