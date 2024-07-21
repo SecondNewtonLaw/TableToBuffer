@@ -1,3 +1,4 @@
+--!strict
 local request = {}
 
 function request.create(offset, maxStringSize)
@@ -29,7 +30,7 @@ function request.create(offset, maxStringSize)
 		--[=[
             Returns the amount to increase the offset by after this operation.
         ]=]
-		advanceBy = function(_: buffer): number
+		advanceBy = function(_: buffer?): number
 			return maxStringSize + 0x4
 		end,
 	}

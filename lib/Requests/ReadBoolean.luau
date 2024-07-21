@@ -1,3 +1,5 @@
+--!strict
+
 local request = {}
 
 function request.create(offset)
@@ -19,7 +21,7 @@ function request.create(offset)
 		--[=[
             Returns the amount to increase the offset by after this operation.
         ]=]
-		advanceBy = function(_: buffer): number
+		advanceBy = function(_: buffer?): number
 			return 1 -- Buffer not required.
 		end,
 	}

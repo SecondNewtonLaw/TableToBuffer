@@ -1,3 +1,4 @@
+--!strict
 local request = {}
 
 function request.create(offset, readSize: number, signed: boolean)
@@ -60,7 +61,7 @@ function request.create(offset, readSize: number, signed: boolean)
 		--[=[
             Returns the amount to increase the offset by after this operation.
         ]=]
-		advanceBy = function(_: buffer): number
+		advanceBy = function(_: buffer?): number
 			return readSize -- Buffer not required.
 		end,
 	}
