@@ -1,3 +1,4 @@
+--!strict
 local deserializable = {}
 
 local readFloatRequest = require(script.Parent.Requests.ReadFloat)

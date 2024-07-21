@@ -2,21 +2,13 @@
     "name": "InstanceToBuffer-dev",
     "tree": {
         "$className": "DataModel",
-        "ServerScriptService": {
-            "$path": "test/Server"
-        },
         "ReplicatedStorage": {
             "$path": "test/Shared",
             "Packages": {
                 "$path": "Packages",
-                "InstanceToBuffer": {
+                "TableToBuffer": {
                     "$path": "lib/"
                 }
-            }
-        },
-        "StarterPlayer": {
-            "StarterPlayerScripts": {
-                "$path": "test/Client"
             }
         }
     }
