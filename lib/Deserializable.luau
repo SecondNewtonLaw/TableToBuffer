@@ -238,6 +238,38 @@ function deserializable.Create()
 						end
 					end
 
+					if type(writeValue) == "number" then
+						assert(
+							action.ActionType == "int" or action.ActionType == "float",
+							`Attempted to write a value of type '{type(writeValue)}' when the serializer action that serializes parameter '{action.DeserializedName}' expects a type that fits the description of a {action.ActionType}`
+						)
+					elseif type(writeValue) == "string" then
+						assert(
+							action.ActionType == "dynamicstring",
+							`Attempted to write a value of type '{type(writeValue)}' when the serializer action that serializes parameter '{action.DeserializedName}' expects a type that fits the description of a {action.ActionType}`
+						)
+					elseif type(writeValue) == "boolean" then
+						assert(
+							action.ActionType == "boolean",
+							`Attempted to write a value of type '{type(writeValue)}' when the serializer action that serializes parameter '{action.DeserializedName}' expects a type that fits the description of a {action.ActionType}`
+						)
+					elseif type(writeValue) == "vector" then
+						assert(
+							action.ActionType == "vector",
+							`Attempted to write a value of type '{type(writeValue)}' when the serializer action that serializes parameter '{action.DeserializedName}' expects a type that fits the description of a {action.ActionType}`
+						)
+					elseif type(writeValue) == "buffer" then
+						assert(
+							action.ActionType == "buffer",
+							`Attempted to write a value of type '{type(writeValue)}' when the serializer action that serializes parameter '{action.DeserializedName}' expects a type that fits the description of a {action.ActionType}`
+						)
+					elseif type(writeValue) == "table" then
+						assert(
+							action.ActionType == "table",
+							`Attempted to write a value of type '{type(writeValue)}' when the serializer action that serializes parameter '{action.DeserializedName}' expects a type that fits the description of a {action.ActionType}`
+						)
+					end
+
 					if action.ActionType == "table" and action.Serializer then
 						local tBuf = action.Serializer.Serialize(writeValue)
 						buffer.copy(buf, action.OffsetedAt, tBuf, 0x0, action.Serializer.GetBufferSize())
