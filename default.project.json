@@ -1,9 +1,8 @@
 {
-    "name": "InstanceToBuffer-dev",
+    "name": "TableToBuffer-dev",
     "tree": {
         "$className": "DataModel",
         "ReplicatedStorage": {
-            "$path": "test/Shared",
             "Packages": {
                 "$path": "Packages",
                 "TableToBuffer": {
