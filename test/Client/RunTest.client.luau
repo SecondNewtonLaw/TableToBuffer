@@ -154,7 +154,7 @@ do
 				and (deserializedKeycode :: EnumItem).Value == keycodeE.Value,
 			"The serialized and deserialized EnumItem Name and Value are not the same."
 		)
-		assert(deserializedKeycode == keycodeE, "The the EnumItems are not the dsame.")
+		assert(deserializedKeycode == keycodeE, "The the EnumItems are not the same.")
 
 		print("Original KeyCode (Name): ", keycodeE.Name)
 		print("Original KeyCode (Value): ", keycodeE.Value)
@@ -165,5 +165,37 @@ do
 		print("Deserialized KeyCode (EnumType): ", (deserializedKeycode :: EnumItem).EnumType)
 
 		print("--- Testing ended for EnumItem serialization ---")
+	end
+
+	do
+		print("--- Testing BrickColor serialization ---")
+
+		local brickColor = BrickColor.random()
+
+		assert(
+			instanceToBuffer.CanBeSerialized(brickColor),
+			"Test failed: Cannot serialize BrickColor, when they should be serializable."
+		)
+
+		local success: boolean
+		local deserializedBrickcolor: BrickColor | unknown
+		success, deserializedBrickcolor = instanceToBuffer.TryDeserialize(instanceToBuffer.Serialize(brickColor))
+
+		assert(success, `Operation was not marked as a success. Error Message: {tostring(deserializedBrickcolor)}`)
+		assert(type(deserializedBrickcolor) == "userdata", "When deserialized, the BrickColor is not of type userdata.")
+		assert(
+			(deserializedBrickcolor :: BrickColor).Name == brickColor.Name
+				and (deserializedBrickcolor :: BrickColor).Number == brickColor.Number,
+			"The serialized and deserialized BrickColor Name and Value are not the same."
+		)
+		assert(deserializedBrickcolor == brickColor, "The the BrickColors are not the same.")
+
+		print("Original BrickColor (Name): ", brickColor.Name)
+		print("Original BrickColor (Color3): ", brickColor.Color)
+
+		print("Deserialized BrickColor (Name): ", brickColor.Name)
+		print("Deserialized BrickColor (Color3): ", brickColor.Color)
+
+		print("--- Testing ended for BrickColor serialization ---")
 	end
 end

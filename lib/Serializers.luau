@@ -114,6 +114,13 @@ Serializers.Serializers = table.freeze({
 		return buf
 	end,
 
+	[MagicValues.TypeToMagic.BrickColor] = function(brickColor: BrickColor): buffer
+		local buf = buffer.create(0x8)
+		buffer.writei32(buf, 0x0, MagicValues.TypeToMagic.BrickColor)
+		buffer.writei32(buf, 0x4, brickColor.Number)
+		return buf
+	end,
+
 	--#endregion typeof(x) == "Instance" and x.ClassName ==
 } :: { [number]: (obj: any) -> buffer })
 

@@ -20,6 +20,8 @@ MagicValues.TypeToMagic = {
 	-- typeof(x) == "Instance" and x.ClassName ==
 	Player = 0x10002,
 	Animation = 0x10004,
+	BrickColor = 0x10006,
+	Sound = 0x10008,
 }
 
 MagicValues.MagicToType = {} :: { [number]: string }

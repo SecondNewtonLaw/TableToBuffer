@@ -115,6 +115,12 @@ Deserializers.Deserializers = table.freeze({
 		return animation
 	end,
 
+	[MagicValues.TypeToMagic.BrickColor] = function(buf: buffer): BrickColor
+		assert(buffer.readi32(buf, 0x0) == MagicValues.TypeToMagic.BrickColor, "Invalid magic for buffer.")
+
+		return BrickColor.new(buffer.readi32(buf, 0x4))
+	end,
+
 	--#endregion typeof(x) == "Instance" and x.ClassName ==
 } :: { [number]: (buf: buffer) -> unknown })
 
