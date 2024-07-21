@@ -9,6 +9,14 @@
                     "$path": "lib/"
                 }
             }
+        },
+        "StarterPlayer": {
+            "StarterPlayerScripts": {
+                "$className": "StarterPlayerScripts",
+                "tests": {
+                    "$path": "test/"
+                }
+            }
         }
     }
 }

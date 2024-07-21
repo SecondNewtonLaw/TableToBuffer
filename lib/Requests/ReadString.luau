@@ -3,7 +3,7 @@ local request = {}
 function request.create(offset, maxStringSize)
 	assert(typeof(maxStringSize) == "number", "maxStringSize must be a number.")
 	assert(typeof(offset) == "number", "offset must be a number.")
-	assert(maxStringSize <= 256, "maxStringSize is too big, serializer will not continue")
+	assert(maxStringSize <= 1024, "maxStringSize is too big, serializer will not continue")
 
 	return {
 		write = function(buf: buffer, str: string)
