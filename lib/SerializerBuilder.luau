@@ -185,16 +185,22 @@ function serializerBuilder.Create<T>()
 		@within SerializerBuilder
 		@error "maxStringSize must be a number" -- Happens when maxStringSize is not of type number. 
 		@error "maxStringSize is too big, serializer will not continue" -- Happens when maxSizeString exceeds 1025.
+		@error "Only zlib and lzw are supported as compresison algorithms. If you do not wish to use compression, use NoCompression" -- Happens when compressionAlgorithm is not of the specified type parameters.
 
 		@param valueName string -- The index that this string will have when it is deserialized into a table.
 		@param maxStringSize number -- The length of the string, used to cap buffers from becoming too big.
+		@param compressionAlgorithm "NoCompression" | "deflate" | "lzw" | "zlib" | nil -- The algorithm the string will be compressed with, written with the string. If nil, zlib will be used by default
 		@return SerializerBuilder -- The builder instance.
 	]=]
-	function __self.stringWithName(valueName, maxStringSize: number)
+	function __self.stringWithName(
+		valueName,
+		maxStringSize: number,
+		compressionAlgorithm: "NoCompression" | "deflate" | "lzw" | "zlib" | nil
+	)
 		table.insert(actionList, {
 			DeserializedName = valueName,
 			ActionType = "dynamicstring",
-			Solver = readStringRequest.create(bufferSize, maxStringSize),
+			Solver = readStringRequest.create(bufferSize, maxStringSize, compressionAlgorithm or "zlib"),
 			OffsetedAt = bufferSize,
 		})
 
