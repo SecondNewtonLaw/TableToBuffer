@@ -1,6 +1,6 @@
 export type Action<T> = {
 	DeserializedName: string,
-	ActionType: "int" | "boolean" | "float" | "dynamicstring" | "table" | "vector" | "buffer",
+	ActionType: "int" | "boolean" | "float" | "dynamicstring" | "table" | "vector" | "buffer" | "CFrame",
 	Solver: {
 		write: (buf: buffer, any) -> (),
 		read: (buf: buffer) -> any,

@@ -15,6 +15,7 @@ local readIntRequest = require(script.Parent.Requests.ReadInteger)
 local readStringRequest = require(script.Parent.Requests.ReadString)
 local readBooleanRequest = require(script.Parent.Requests.ReadBoolean)
 local readVectorRequest = require(script.Parent.Requests.ReadVector)
+local readCFrameRequest = require(script.Parent.Requests.ReadCFrame)
 local readBufferRequest = require(script.Parent.Requests.ReadBuffer)
 
 --[=[
@@ -241,6 +242,24 @@ function serializerBuilder.Create<T>()
 	end
 
 	--[=[
+		Inserts an action to the deserializer action list, which will indicate it to read six IEEE-754 double-precision floating point numbers, representing X, Y and Z for two Vector3, which all together form a CoordinateFrame.
+
+		@within SerializerBuilder
+		@param valueName string -- The index that this vector will have when it is deserialized into a table.
+		@return SerializerBuilder -- The builder instance.
+	]=]
+	function __self.coordinateFrameWithName(valueName: string)
+		table.insert(actionList, {
+			DeserializedName = valueName,
+			ActionType = "CFrame",
+			Solver = readCFrameRequest.create(bufferSize),
+			OffsetedAt = bufferSize,
+		})
+		bufferSize += 0x8 * 6
+		return __self
+	end
+
+	--[=[
 		Inserts an action to the deserializer action list, which will indicate it to read an aribitrary amount of bytes determined by the table serializer, and to then feed that into the given serializer to craft the table.
 
 		@within SerializerBuilder
@@ -384,6 +403,8 @@ function serializerBuilder.Create<T>()
 							writeValue = buffer.create(0x1000)
 							buffer.fill(writeValue, 0x0, 0xDEADBEEF, 0x1000)
 						end
+					elseif action.ActionType == "CFrame" then
+						writeValue = CFrame.identity
 					end
 				end
 
@@ -415,6 +436,11 @@ function serializerBuilder.Create<T>()
 				elseif type(writeValue) == "table" then
 					assert(
 						action.ActionType == "table",
+						`Attempted to write a value of type '{type(writeValue)}' when the serializer action that serializes parameter '{action.DeserializedName}' expects a type that fits the description of a {action.ActionType}`
+					)
+				elseif typeof(writeValue) == "CFrame" then
+					assert(
+						action.ActionType == "CFrame",
 						`Attempted to write a value of type '{type(writeValue)}' when the serializer action that serializes parameter '{action.DeserializedName}' expects a type that fits the description of a {action.ActionType}`
 					)
 				end

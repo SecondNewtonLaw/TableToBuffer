@@ -13,7 +13,7 @@ local TableToBuffer = {}
 
 	@within TableToBuffer
 	@error "This function only accepts tables" when argument t is not a table
-	@error "Only maps of { [string]: boolean | number | string | table | vector (Vector3) | buffer } are supported. Mixed tables are not supported, neither are arrays." When the given map contains keys that are not only strings or contains non-primitive data types as values.
+	@error "Only maps of { [string]: boolean | number | string | table | vector (Vector3) | buffer | CFrame } are supported. Mixed tables are not supported, neither are arrays." When the given map contains keys that are not only strings or contains non-primitive data types as values.
 
 	@param t T -- The table to make a binary serializer for
 	@return Serializer<T> -- A serializer that can make the given table into a buffer
@@ -32,8 +32,9 @@ function TableToBuffer.GetSerializerForTable<T>(t: T): TypeDefinitions.Serialize
 					and type(val) ~= "table"
 					and type(val) ~= "vector"
 					and type(val) ~= "buffer"
+					and typeof(val) ~= "CFrame"
 				),
-			"Only maps of { [string]: boolean | number | string | table | vector (Vector3) | buffer } are supported. Mixed tables are not supported, neither are arrays."
+			"Only maps of { [string]: boolean | number | string | table | vector (Vector3) | buffer | CFrame } are supported. Mixed tables are not supported, neither are arrays."
 		)
 
 		if type(val) == "boolean" then
@@ -51,6 +52,8 @@ function TableToBuffer.GetSerializerForTable<T>(t: T): TypeDefinitions.Serialize
 			-- 0x1000 is the sizeof modern day memory pages, this isn't important really, and if the buffer is bigger, we will provide a bigger room for data (the length of it)
 			local bufLen = buffer.len(val)
 			serializerBuilder = serializerBuilder.bufferWithName(idx, bufLen > 0x1000 and bufLen or 0x1000)
+		elseif typeof(val) == "CFrame" then
+			serializerBuilder = serializerBuilder.coordinateFrameWithName(idx)
 		end
 	end
 
@@ -145,6 +148,11 @@ function TableToBuffer.TableAsBuffer<T>(tbl: T): T
 						assert(
 							action.ActionType == "table",
 							`Attempted to write a value of type '{type(value)}' when the serializer action that serializes parameter '{index}' expects a type that fits the description of a {action.ActionType}`
+						)
+					elseif typeof(value) == "CFrame" then
+						assert(
+							action.ActionType == "CFrame",
+							`Attempted to write a value of type '{type(value)}' when the serializer action that serializes parameter '{action.DeserializedName}' expects a type that fits the description of a {action.ActionType}`
 						)
 					end
 

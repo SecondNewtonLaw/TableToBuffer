@@ -1,5 +1,6 @@
 --!nocheck
 
+local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local tableToBuffer = require(ReplicatedStorage.Packages.TableToBuffer)
@@ -25,6 +26,7 @@ do
 					ne = "sted",
 					vec = Vector3.new(1541, 12.211564, 402342),
 					vec3 = Vector3.new(545.1456, 54654.458, -259259.89023489),
+					CFram = CFrame.identity,
 					buf = buf,
 				},
 			})
@@ -53,6 +55,7 @@ do
 				ne = "unsted",
 				vec = Vector3.new(545.1456, 54654.458, -259259.89023489),
 				vec3 = Vector3.new(584545.1456, 121588.458, -2259.890238811),
+				CFram = CFrame.new(8568.478, 564568.47, 54684658.184),
 				buf = buf,
 			},
 		},
@@ -81,9 +84,17 @@ do
 			},
 		},
 		ThisIsAnotherIndex = "Hello, World!",
+		ThisisACframe = (Players.LocalPlayer.Character or Players.LocalPlayer.CharacterAdded:Wait()):WaitForChild(
+			"HumanoidRootPart"
+		).CFrame,
+		ThisIsAVector = Vector3.new(0x65940, 01, 0xDEADBEEF),
 		ThisIsABoolean = false,
 	})
 	print(tostring(tableAsBuffer))
+	print(
+		(Players.LocalPlayer.Character or Players.LocalPlayer.CharacterAdded:Wait()):WaitForChild("HumanoidRootPart").CFrame
+	)
+	print(tostring(tableAsBuffer.ThisisACframe))
 
 	tableAsBuffer.ThisIsAnIndex = {
 		AnotherIndex = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
