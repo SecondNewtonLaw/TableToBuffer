@@ -6,8 +6,8 @@
 <title data-rh="true">SerializerBuilder | TableToBuffer</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://SecondNewtonlaw.github.io/TableToBuffer/api/SerializerBuilder"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="SerializerBuilder | TableToBuffer"><meta data-rh="true" name="description" content="A builder used to make a simple an intuitive serializer at runtime.
 	"><meta data-rh="true" property="og:description" content="A builder used to make a simple an intuitive serializer at runtime.
 	"><link data-rh="true" rel="canonical" href="https://SecondNewtonlaw.github.io/TableToBuffer/api/SerializerBuilder"><link data-rh="true" rel="alternate" href="https://SecondNewtonlaw.github.io/TableToBuffer/api/SerializerBuilder" hreflang="en"><link data-rh="true" rel="alternate" href="https://SecondNewtonlaw.github.io/TableToBuffer/api/SerializerBuilder" hreflang="x-default"><link rel="stylesheet" href="/TableToBuffer/assets/css/styles.19a5646f.css">
-<link rel="preload" href="/TableToBuffer/assets/js/runtime~main.4e1ab69e.js" as="script">
-<link rel="preload" href="/TableToBuffer/assets/js/main.e601a2ad.js" as="script">
+<link rel="preload" href="/TableToBuffer/assets/js/runtime~main.ef14ea81.js" as="script">
+<link rel="preload" href="/TableToBuffer/assets/js/main.75489846.js" as="script">
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
@@ -61,27 +61,29 @@
 <p>The builder instance.</p>
 </span></span></div><div>
 <p>Inserts an action to the deserializer action list, which indicates it to read 8 bytes and to treat the return as a IEEE-754 double-precision floating point number.</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="stringWithName"><code style="text-decoration:none">stringWithName</code><a href="#stringWithName" class="hash-link" aria-label="Direct link to stringWithName" title="Direct link to stringWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L193"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">stringWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code><span class="inlineDescription_G7Er">-- <span>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="stringWithName"><code style="text-decoration:none">stringWithName</code><a href="#stringWithName" class="hash-link" aria-label="Direct link to stringWithName" title="Direct link to stringWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L195"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">stringWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code><span class="inlineDescription_G7Er">-- <span>
 <p>The index that this string will have when it is deserialized into a table.</p>
-</span></span></div><div><code>maxStringSize<!-- -->: </code><code class="blue_P4bS">number</code><span class="inlineDescription_G7Er">-- <span>
+</span></span></div><div><code>maxStringSize<!-- -->: </code><code class="blue_P4bS">number</code><code>,</code><span class="inlineDescription_G7Er">-- <span>
 <p>The length of the string, used to cap buffers from becoming too big.</p>
+</span></span></div><div><code>compressionAlgorithm<!-- -->: </code><code class="blue_P4bS">&quot;NoCompression&quot;</code><code class="op_lSLc"> | </code><code class="blue_P4bS">&quot;deflate&quot;</code><code class="op_lSLc"> | </code><code class="blue_P4bS">&quot;lzw&quot;</code><code class="op_lSLc"> | </code><code class="blue_P4bS">&quot;zlib&quot;</code><code class="op_lSLc"> | </code><code class="blue_P4bS">nil</code><span class="inlineDescription_G7Er">-- <span>
+<p>The algorithm the string will be compressed with, written with the string. If nil, zlib will be used by default</p>
 </span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
 <p>The builder instance.</p>
 </span></span></div><div>
 <p>Inserts an action to the deserializer action list, which indicates it to read an arbitrary amount bytes and to treat the return as a string. The size of the string is placed four bytes before the string as an int32.</p>
-</div><h3>Errors</h3><table class="errorTable_jfN8"><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>&quot;maxStringSize must be a number&quot;</td><td>Happens when maxStringSize is not of type number.</td></tr><tr><td>&quot;maxStringSize is too big, serializer will not continue&quot;</td><td>Happens when maxSizeString exceeds 1025.</td></tr></tbody></table><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="booleanWithName"><code style="text-decoration:none">booleanWithName</code><a href="#booleanWithName" class="hash-link" aria-label="Direct link to booleanWithName" title="Direct link to booleanWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L214"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">booleanWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+</div><h3>Errors</h3><table class="errorTable_jfN8"><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>&quot;maxStringSize must be a number&quot;</td><td>Happens when maxStringSize is not of type number.</td></tr><tr><td>&quot;maxStringSize is too big, serializer will not continue&quot;</td><td>Happens when maxSizeString exceeds 1025.</td></tr><tr><td>&quot;Only zlib and lzw are supported as compresison algorithms. If you do not wish to use compression, use NoCompression&quot;</td><td>Happens when compressionAlgorithm is not of the specified type parameters.</td></tr></tbody></table><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="booleanWithName"><code style="text-decoration:none">booleanWithName</code><a href="#booleanWithName" class="hash-link" aria-label="Direct link to booleanWithName" title="Direct link to booleanWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L220"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">booleanWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
 <p>The index that this boolean will have when it is deserialized into a table.</p>
 </span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
 <p>The builder instance.</p>
 </span></span></div><div>
 <p>Inserts an action to the deserializer action list, which indicates it to read 1 byte and to treat the return as a boolean.</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="vectorWithName"><code style="text-decoration:none">vectorWithName</code><a href="#vectorWithName" class="hash-link" aria-label="Direct link to vectorWithName" title="Direct link to vectorWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L232"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">vectorWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="vectorWithName"><code style="text-decoration:none">vectorWithName</code><a href="#vectorWithName" class="hash-link" aria-label="Direct link to vectorWithName" title="Direct link to vectorWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L238"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">vectorWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
 <p>The index that this vector will have when it is deserialized into a table.</p>
 </span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
 <p>The builder instance.</p>
 </span></span></div><div>
 <p>Inserts an action to the deserializer action list, which will indicate it to read three IEEE-754 double-precision floating point numbers, representing X, Y and Z for a Vector3.</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="tableWithName"><code style="text-decoration:none">tableWithName</code><a href="#tableWithName" class="hash-link" aria-label="Direct link to tableWithName" title="Direct link to tableWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L251"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">tableWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code><span class="inlineDescription_G7Er">-- <span>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="tableWithName"><code style="text-decoration:none">tableWithName</code><a href="#tableWithName" class="hash-link" aria-label="Direct link to tableWithName" title="Direct link to tableWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L257"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">tableWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code><span class="inlineDescription_G7Er">-- <span>
 <p>The index that this table will have when it is deserialized into a table.</p>
 </span></span></div><div><code>tableSerializer<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/Serializer">Serializer</a></code><code class="op_lSLc">&lt;</code><code class="blue_P4bS">U</code><code class="op_lSLc">&gt;</code><span class="inlineDescription_G7Er">-- <span>
 <p>The serializer that the table will use when being turned from a buffer into a table and vice-versa.</p>
@@ -89,7 +91,7 @@
 <p>The builder instance.</p>
 </span></span></div><div>
 <p>Inserts an action to the deserializer action list, which will indicate it to read an aribitrary amount of bytes determined by the table serializer, and to then feed that into the given serializer to craft the table.</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="bufferWithName"><code style="text-decoration:none">bufferWithName</code><a href="#bufferWithName" class="hash-link" aria-label="Direct link to bufferWithName" title="Direct link to bufferWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L271"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">bufferWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code><span class="inlineDescription_G7Er">-- <span>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="bufferWithName"><code style="text-decoration:none">bufferWithName</code><a href="#bufferWithName" class="hash-link" aria-label="Direct link to bufferWithName" title="Direct link to bufferWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L277"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">bufferWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code><span class="inlineDescription_G7Er">-- <span>
 <p>The index that this buffer will have when it is deserialized into a table.</p>
 </span></span></div><div><code>bufSize<!-- -->: </code><code class="blue_P4bS">number?</code><span class="inlineDescription_G7Er">-- <span>
 <p>The size the buffer will have. If not specified, the size will be of 0x1000, or 4096 bytes.</p>
@@ -288,6 +290,11 @@
                     &quot;name&quot;: &quot;maxStringSize&quot;,
                     &quot;desc&quot;: &quot;The length of the string, used to cap buffers from becoming too big.&quot;,
                     &quot;lua_type&quot;: &quot;number&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;compressionAlgorithm&quot;,
+                    &quot;desc&quot;: &quot;The algorithm the string will be compressed with, written with the string. If nil, zlib will be used by default&quot;,
+                    &quot;lua_type&quot;: &quot;\&quot;NoCompression\&quot; | \&quot;deflate\&quot; | \&quot;lzw\&quot; | \&quot;zlib\&quot; | nil&quot;
                 }
             ],
             &quot;returns&quot;: [
@@ -305,10 +312,14 @@
                 {
                     &quot;lua_type&quot;: &quot;\&quot;maxStringSize is too big, serializer will not continue\&quot;&quot;,
                     &quot;desc&quot;: &quot;Happens when maxSizeString exceeds 1025.&quot;
+                },
+                {
+                    &quot;lua_type&quot;: &quot;\&quot;Only zlib and lzw are supported as compresison algorithms. If you do not wish to use compression, use NoCompression\&quot;&quot;,
+                    &quot;desc&quot;: &quot;Happens when compressionAlgorithm is not of the specified type parameters.&quot;
                 }
             ],
             &quot;source&quot;: {
-                &quot;line&quot;: 193,
+                &quot;line&quot;: 195,
                 &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
             }
         },
@@ -330,7 +341,7 @@
             ],
             &quot;function_type&quot;: &quot;static&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 214,
+                &quot;line&quot;: 220,
                 &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
             }
         },
@@ -352,7 +363,7 @@
             ],
             &quot;function_type&quot;: &quot;static&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 232,
+                &quot;line&quot;: 238,
                 &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
             }
         },
@@ -379,7 +390,7 @@
             ],
             &quot;function_type&quot;: &quot;static&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 251,
+                &quot;line&quot;: 257,
                 &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
             }
         },
@@ -406,7 +417,7 @@
             ],
             &quot;function_type&quot;: &quot;static&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 271,
+                &quot;line&quot;: 277,
                 &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
             }
         }
@@ -420,7 +431,7 @@
         &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
     }
 }</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#booleanWithName" class="table-of-contents__link toc-highlight">.booleanWithName</a></li><li><a href="#bufferWithName" class="table-of-contents__link toc-highlight">.bufferWithName</a></li><li><a href="#doubleWithName" class="table-of-contents__link toc-highlight">.doubleWithName</a></li><li><a href="#floatWithName" class="table-of-contents__link toc-highlight">.floatWithName</a></li><li><a href="#int16WithName" class="table-of-contents__link toc-highlight">.int16WithName</a></li><li><a href="#int32WithName" class="table-of-contents__link toc-highlight">.int32WithName</a></li><li><a href="#int8WithName" class="table-of-contents__link toc-highlight">.int8WithName</a></li><li><a href="#stringWithName" class="table-of-contents__link toc-highlight">.stringWithName</a></li><li><a href="#tableWithName" class="table-of-contents__link toc-highlight">.tableWithName</a></li><li><a href="#uint16WithName" class="table-of-contents__link toc-highlight">.uint16WithName</a></li><li><a href="#uint32WithName" class="table-of-contents__link toc-highlight">.uint32WithName</a></li><li><a href="#uint8WithName" class="table-of-contents__link toc-highlight">.uint8WithName</a></li><li><a href="#vectorWithName" class="table-of-contents__link toc-highlight">.vectorWithName</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 SecondNewtonLaw. Built with Moonwave and Docusaurus</div></div></div></footer></div>
-<script src="/TableToBuffer/assets/js/runtime~main.4e1ab69e.js"></script>
-<script src="/TableToBuffer/assets/js/main.e601a2ad.js"></script>
+<script src="/TableToBuffer/assets/js/runtime~main.ef14ea81.js"></script>
+<script src="/TableToBuffer/assets/js/main.75489846.js"></script>
 </body>
 </html>
