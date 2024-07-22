@@ -1,6 +1,6 @@
 # TableToBuffer
 
-Table to buffer is a project that aims to create a serializer for primitive data types (Except tables) inside of Luau.
+Table to buffer is a project that aims to create a serializer for _most_ primitive data types inside of Luau (`userdata` is not serialized due to it having to be practically manually done for each instance).
 
 All of the serializers and deserializers were manually written, no automatic tool was involved, which means they can be improved, so if there is any bug or space optimization, reach out using issues or make a pull request.
 
