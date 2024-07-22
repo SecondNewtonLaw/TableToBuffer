@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[49],{63891:e=>{e.exports=JSON.parse('{"sourceUrl":"https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev","baseUrl":"/TableToBuffer/","classOrder":[],"apiCategories":[]}')}}]);

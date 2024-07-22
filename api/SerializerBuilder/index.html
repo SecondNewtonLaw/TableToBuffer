@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-moonwave plugin-id-moonwave">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v2.3.1">
+<title data-rh="true">SerializerBuilder | TableToBuffer</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://SecondNewtonlaw.github.io/TableToBuffer/api/SerializerBuilder"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="SerializerBuilder | TableToBuffer"><meta data-rh="true" name="description" content="A builder used to make a simple an intuitive serializer at runtime.
+	"><meta data-rh="true" property="og:description" content="A builder used to make a simple an intuitive serializer at runtime.
+	"><link data-rh="true" rel="canonical" href="https://SecondNewtonlaw.github.io/TableToBuffer/api/SerializerBuilder"><link data-rh="true" rel="alternate" href="https://SecondNewtonlaw.github.io/TableToBuffer/api/SerializerBuilder" hreflang="en"><link data-rh="true" rel="alternate" href="https://SecondNewtonlaw.github.io/TableToBuffer/api/SerializerBuilder" hreflang="x-default"><link rel="stylesheet" href="/TableToBuffer/assets/css/styles.19a5646f.css">
+<link rel="preload" href="/TableToBuffer/assets/js/runtime~main.fd4326a2.js" as="script">
+<link rel="preload" href="/TableToBuffer/assets/js/main.c8ad927c.js" as="script">
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
+<div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/TableToBuffer/"><b class="navbar__title text--truncate">TableToBuffer</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/TableToBuffer/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/SecondNewtonLaw/TableToBuffer" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="searchBox_ZlJk"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input type="search" id="search_input_react" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0 docPageContainer_wNNk"><div class="docPage_Dpn1"><div class="docSidebarContainer_o_re"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/TableToBuffer/api/Serializer">​Serializer</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/TableToBuffer/api/SerializerBuilder">​Serializer​Builder</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/TableToBuffer/api/TableToBuffer">​Table​To​Buffer</a></li></ul></nav></div></div><main class="docMainContainer_HJE1"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_MU3C"><div class="docItemContainer_Wv98"><article><div class="member_J0w1 markdown"><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_oUs_"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><header><h1 class="docTitle_mZRt" style="text-decoration:none"><span style="display:inline-block">Serializer</span><span style="display:inline-block">Builder</span></h1><div class="luaClassTags_EipM"></div><div>
+<p>A builder used to make a simple an intuitive serializer at runtime.</p>
+</div></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a href="#functions" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="uint32WithName"><code style="text-decoration:none">uint32WithName</code><a href="#uint32WithName" class="hash-link" aria-label="Direct link to uint32WithName" title="Direct link to uint32WithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L45"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">uint32WithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this uint32 will have when it is deserialized into a table.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which indicates it to read 4 bytes and treat the return as an unsigned 32 bit integer.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="uint16WithName"><code style="text-decoration:none">uint16WithName</code><a href="#uint16WithName" class="hash-link" aria-label="Direct link to uint16WithName" title="Direct link to uint16WithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L63"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">uint16WithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this uint16 will have when it is deserialized into a table.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which indicates it to read 2 bytes and treat the return as an unsigned 16 bit integer.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="uint8WithName"><code style="text-decoration:none">uint8WithName</code><a href="#uint8WithName" class="hash-link" aria-label="Direct link to uint8WithName" title="Direct link to uint8WithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L81"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">uint8WithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this uint8 will have when it is deserialized into a table.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which indicates it to read 1 byte and treat the return as an unsigned 8 bit integer.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="int32WithName"><code style="text-decoration:none">int32WithName</code><a href="#int32WithName" class="hash-link" aria-label="Direct link to int32WithName" title="Direct link to int32WithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L99"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">int32WithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this int32 will have when it is deserialized into a table.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which indicates it to read 4 bytes and treat the return as an signed 32 bit integer.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="int16WithName"><code style="text-decoration:none">int16WithName</code><a href="#int16WithName" class="hash-link" aria-label="Direct link to int16WithName" title="Direct link to int16WithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L117"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">int16WithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this int16 will have when it is deserialized into a table.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which indicates it to read 2 bytes and treat the return as an signed 16 bit integer.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="int8WithName"><code style="text-decoration:none">int8WithName</code><a href="#int8WithName" class="hash-link" aria-label="Direct link to int8WithName" title="Direct link to int8WithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L135"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">int8WithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this int8 will have when it is deserialized into a table.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which indicates it to read 1 byte and treat the return as an signed 8 bit integer.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="floatWithName"><code style="text-decoration:none">floatWithName</code><a href="#floatWithName" class="hash-link" aria-label="Direct link to floatWithName" title="Direct link to floatWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L153"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">floatWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this float32 will have when it is deserialized into a table.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which indicates it to read 4 bytes and to treat the return as a IEEE-754 single-precision floating point number.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="doubleWithName"><code style="text-decoration:none">doubleWithName</code><a href="#doubleWithName" class="hash-link" aria-label="Direct link to doubleWithName" title="Direct link to doubleWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L171"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">doubleWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this double/float64 will have when it is deserialized into a table.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which indicates it to read 8 bytes and to treat the return as a IEEE-754 double-precision floating point number.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="stringWithName"><code style="text-decoration:none">stringWithName</code><a href="#stringWithName" class="hash-link" aria-label="Direct link to stringWithName" title="Direct link to stringWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L193"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">stringWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this string will have when it is deserialized into a table.</p>
+</span></span></div><div><code>maxStringSize<!-- -->: </code><code class="blue_P4bS">number</code><span class="inlineDescription_G7Er">-- <span>
+<p>The length of the string, used to cap buffers from becoming too big.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which indicates it to read an arbitrary amount bytes and to treat the return as a string. The size of the string is placed four bytes before the string as an int32.</p>
+</div><h3>Errors</h3><table class="errorTable_jfN8"><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>&quot;maxStringSize must be a number&quot;</td><td>Happens when maxStringSize is not of type number.</td></tr><tr><td>&quot;maxStringSize is too big, serializer will not continue&quot;</td><td>Happens when maxSizeString exceeds 1025.</td></tr></tbody></table><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="booleanWithName"><code style="text-decoration:none">booleanWithName</code><a href="#booleanWithName" class="hash-link" aria-label="Direct link to booleanWithName" title="Direct link to booleanWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L214"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">booleanWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this boolean will have when it is deserialized into a table.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which indicates it to read 1 byte and to treat the return as a boolean.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="vectorWithName"><code style="text-decoration:none">vectorWithName</code><a href="#vectorWithName" class="hash-link" aria-label="Direct link to vectorWithName" title="Direct link to vectorWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L232"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">vectorWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this vector will have when it is deserialized into a table.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which will indicate it to read three IEEE-754 double-precision floating point numbers, representing X, Y and Z for a Vector3.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="tableWithName"><code style="text-decoration:none">tableWithName</code><a href="#tableWithName" class="hash-link" aria-label="Direct link to tableWithName" title="Direct link to tableWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L251"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">tableWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this table will have when it is deserialized into a table.</p>
+</span></span></div><div><code>tableSerializer<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/Serializer">Serializer</a></code><code class="op_lSLc">&lt;</code><code class="blue_P4bS">U</code><code class="op_lSLc">&gt;</code><span class="inlineDescription_G7Er">-- <span>
+<p>The serializer that the table will use when being turned from a buffer into a table and vice-versa.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which will indicate it to read an aribitrary amount of bytes determined by the table serializer, and to then feed that into the given serializer to craft the table.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="bufferWithName"><code style="text-decoration:none">bufferWithName</code><a href="#bufferWithName" class="hash-link" aria-label="Direct link to bufferWithName" title="Direct link to bufferWithName">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/SecondNewtonLaw/TableToBuffer/blob/dev/lib/SerializerBuilder.luau#L271"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>SerializerBuilder<!-- -->.</code><code class="green_DgR4">bufferWithName</code><code>(</code><div class="inset_uKQm"><div><code>valueName<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code><span class="inlineDescription_G7Er">-- <span>
+<p>The index that this buffer will have when it is deserialized into a table.</p>
+</span></span></div><div><code>bufSize<!-- -->: </code><code class="blue_P4bS">number?</code><span class="inlineDescription_G7Er">-- <span>
+<p>The size the buffer will have. If not specified, the size will be of 0x1000, or 4096 bytes.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/TableToBuffer/api/SerializerBuilder">SerializerBuilder</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>The builder instance.</p>
+</span></span></div><div>
+<p>Inserts an action to the deserializer action list, which will read the given number of bytes, then it will copy those bytes into a new buffer.</p>
+</div></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;uint32WithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which indicates it to read 4 bytes and treat the return as an unsigned 32 bit integer.\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this uint32 will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 45,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;uint16WithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which indicates it to read 2 bytes and treat the return as an unsigned 16 bit integer.\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this uint16 will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 63,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;uint8WithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which indicates it to read 1 byte and treat the return as an unsigned 8 bit integer.\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this uint8 will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 81,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;int32WithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which indicates it to read 4 bytes and treat the return as an signed 32 bit integer.\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this int32 will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 99,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;int16WithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which indicates it to read 2 bytes and treat the return as an signed 16 bit integer.\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this int16 will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 117,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;int8WithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which indicates it to read 1 byte and treat the return as an signed 8 bit integer.\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this int8 will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 135,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;floatWithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which indicates it to read 4 bytes and to treat the return as a IEEE-754 single-precision floating point number.\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this float32 will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 153,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;doubleWithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which indicates it to read 8 bytes and to treat the return as a IEEE-754 double-precision floating point number.\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this double/float64 will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 171,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;stringWithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which indicates it to read an arbitrary amount bytes and to treat the return as a string. The size of the string is placed four bytes before the string as an int32.\n\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this string will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;maxStringSize&quot;,
+                    &quot;desc&quot;: &quot;The length of the string, used to cap buffers from becoming too big.&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;errors&quot;: [
+                {
+                    &quot;lua_type&quot;: &quot;\&quot;maxStringSize must be a number\&quot;&quot;,
+                    &quot;desc&quot;: &quot;Happens when maxStringSize is not of type number.&quot;
+                },
+                {
+                    &quot;lua_type&quot;: &quot;\&quot;maxStringSize is too big, serializer will not continue\&quot;&quot;,
+                    &quot;desc&quot;: &quot;Happens when maxSizeString exceeds 1025.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 193,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;booleanWithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which indicates it to read 1 byte and to treat the return as a boolean.\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this boolean will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 214,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;vectorWithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which will indicate it to read three IEEE-754 double-precision floating point numbers, representing X, Y and Z for a Vector3.\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this vector will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 232,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;tableWithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which will indicate it to read an aribitrary amount of bytes determined by the table serializer, and to then feed that into the given serializer to craft the table.\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this table will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;tableSerializer&quot;,
+                    &quot;desc&quot;: &quot;The serializer that the table will use when being turned from a buffer into a table and vice-versa.&quot;,
+                    &quot;lua_type&quot;: &quot;Serializer&lt;U&gt;&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 251,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;bufferWithName&quot;,
+            &quot;desc&quot;: &quot;Inserts an action to the deserializer action list, which will read the given number of bytes, then it will copy those bytes into a new buffer.\n\n\t&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;valueName&quot;,
+                    &quot;desc&quot;: &quot;The index that this buffer will have when it is deserialized into a table.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;bufSize&quot;,
+                    &quot;desc&quot;: &quot;The size the buffer will have. If not specified, the size will be of 0x1000, or 4096 bytes.&quot;,
+                    &quot;lua_type&quot;: &quot;number?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The builder instance.&quot;,
+                    &quot;lua_type&quot;: &quot;SerializerBuilder&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 271,
+                &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+            }
+        }
+    ],
+    &quot;properties&quot;: [],
+    &quot;types&quot;: [],
+    &quot;name&quot;: &quot;SerializerBuilder&quot;,
+    &quot;desc&quot;: &quot;A builder used to make a simple an intuitive serializer at runtime.\n\t&quot;,
+    &quot;source&quot;: {
+        &quot;line&quot;: 34,
+        &quot;path&quot;: &quot;lib/SerializerBuilder.luau&quot;
+    }
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#booleanWithName" class="table-of-contents__link toc-highlight">.booleanWithName</a></li><li><a href="#bufferWithName" class="table-of-contents__link toc-highlight">.bufferWithName</a></li><li><a href="#doubleWithName" class="table-of-contents__link toc-highlight">.doubleWithName</a></li><li><a href="#floatWithName" class="table-of-contents__link toc-highlight">.floatWithName</a></li><li><a href="#int16WithName" class="table-of-contents__link toc-highlight">.int16WithName</a></li><li><a href="#int32WithName" class="table-of-contents__link toc-highlight">.int32WithName</a></li><li><a href="#int8WithName" class="table-of-contents__link toc-highlight">.int8WithName</a></li><li><a href="#stringWithName" class="table-of-contents__link toc-highlight">.stringWithName</a></li><li><a href="#tableWithName" class="table-of-contents__link toc-highlight">.tableWithName</a></li><li><a href="#uint16WithName" class="table-of-contents__link toc-highlight">.uint16WithName</a></li><li><a href="#uint32WithName" class="table-of-contents__link toc-highlight">.uint32WithName</a></li><li><a href="#uint8WithName" class="table-of-contents__link toc-highlight">.uint8WithName</a></li><li><a href="#vectorWithName" class="table-of-contents__link toc-highlight">.vectorWithName</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 SecondNewtonLaw. Built with Moonwave and Docusaurus</div></div></div></footer></div>
+<script src="/TableToBuffer/assets/js/runtime~main.fd4326a2.js"></script>
+<script src="/TableToBuffer/assets/js/main.c8ad927c.js"></script>
+</body>
+</html>
