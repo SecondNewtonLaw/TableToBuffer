@@ -1,4 +1,4 @@
-# TableToBuffer
+# Table To Buffer
 
 Table to buffer is a project that aims to create a serializer for _most_ primitive data types inside of Luau (`userdata` is not serialized due to it having to be practically manually done for each instance).
 
@@ -16,7 +16,12 @@ The serializer building can be done automatically given a table. This project ON
 
 The library follows a Builder pattern to create Deserializers and Serializers. Think of it as something like a Table to JSON, but instead of JSON, is optimized buffers. The order in which the functions for the builder are called matters, as they dictate how big the buffer will be and the position of the data.
 
-Parsing `userdata` value types is not currently on the roadmap.
+Parsing `userdata` value types is not currently on the roadmap, and it may be treated as a side project if it every comes around.
 
-#### Documentation:
-There is no documentation as of now, as the project is early in development.
+## How to install?
+- Download the `.rbxm` file on the latest release of this project.
+- Using wally:
+    - Add `tabletobuffer = "secondnewtonlaw/tabletobuffer@0.1.0"`
+
+## [How to use this?](https://secondnewtonlaw.github.io/TableToBuffer/)
+

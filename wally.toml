@@ -1,6 +1,7 @@
 [package]
-name = "dottik/tabletobuffer"
-version = "0.1.0"
+name = "secondnewtonlaw/tabletobuffer"
+description = "A utility to convert tables into buffers"
+version = "0.1.1"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 license = "MIT"
