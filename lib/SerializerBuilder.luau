@@ -1,6 +1,14 @@
 --!strict
 
+--[=[
+	@class SerializerBuilderFactory
+	@ignore
+
+	Allows you to create SerializerBuilders.
+]=]
 local serializerBuilder = {}
+
+local types = require(script.Parent.TypeDefinitions)
 
 local readFloatRequest = require(script.Parent.Requests.ReadFloat)
 local readIntRequest = require(script.Parent.Requests.ReadInteger)
@@ -9,37 +17,22 @@ local readBooleanRequest = require(script.Parent.Requests.ReadBoolean)
 local readVectorRequest = require(script.Parent.Requests.ReadVector)
 local readBufferRequest = require(script.Parent.Requests.ReadBuffer)
 
-type Action = {
-	DeserializedName: string,
-	ActionType: "int" | "boolean" | "float" | "dynamicstring" | "table" | "vector" | "buffer",
-	Solver: {
-		write: (buf: buffer, any) -> (),
-		read: (buf: buffer) -> any,
-		advanceBy: (buf: buffer?) -> number,
-	} | nil,
-	Serializer: Serializer | nil,
-	OffsetedAt: number,
-}
+--[=[
+	Create a SerializerBuilder
 
-type Serializer = {
-	Deserialize: (buf: buffer) -> {
-		[string]: any,
-	},
-	GetBufferSize: () -> number,
-	Serialize: (obj: {
-		[string]: any,
-	}) -> buffer,
-	GetActionList: () -> { Action },
-}
+	@within SerializerBuilderFactory
+	@private
 
-function serializerBuilder.Create()
+	@return SerializerBuilder -- A builder that allows you to build a Serializer.
+]=]
+function serializerBuilder.Create<T>()
 	--[=[
 		@class SerializerBuilder
 
 		A builder used to make a simple an intuitive serializer at runtime.
 	]=]
 	local __self = {}
-	local actionList: { Action } = {}
+	local actionList: { types.Action<any> } = {}
 	local bufferSize = 0x8
 
 	--[=[
@@ -47,7 +40,7 @@ function serializerBuilder.Create()
 
 		@within SerializerBuilder
 		@param valueName string -- The index that this uint32 will have when it is deserialized into a table.
-		@return builder SerializerBuilder -- The builder instance.
+		@return SerializerBuilder -- The builder instance.
 	]=]
 	function __self.uint32WithName(valueName: string)
 		table.insert(actionList, {
@@ -65,7 +58,7 @@ function serializerBuilder.Create()
 
 		@within SerializerBuilder
 		@param valueName string -- The index that this uint16 will have when it is deserialized into a table.
-		@return builder SerializerBuilder -- The builder instance.
+		@return SerializerBuilder -- The builder instance.
 	]=]
 	function __self.uint16WithName(valueName: string)
 		table.insert(actionList, {
@@ -83,7 +76,7 @@ function serializerBuilder.Create()
 
 		@within SerializerBuilder
 		@param valueName string -- The index that this uint8 will have when it is deserialized into a table.
-		@return builder SerializerBuilder -- The builder instance.
+		@return SerializerBuilder -- The builder instance.
 	]=]
 	function __self.uint8WithName(valueName: string)
 		table.insert(actionList, {
@@ -101,7 +94,7 @@ function serializerBuilder.Create()
 
 		@within SerializerBuilder
 		@param valueName string -- The index that this int32 will have when it is deserialized into a table.
-		@return builder SerializerBuilder -- The builder instance.
+		@return SerializerBuilder -- The builder instance.
 	]=]
 	function __self.int32WithName(valueName: string)
 		table.insert(actionList, {
@@ -119,7 +112,7 @@ function serializerBuilder.Create()
 
 		@within SerializerBuilder
 		@param valueName string -- The index that this int16 will have when it is deserialized into a table.
-		@return builder SerializerBuilder -- The builder instance.
+		@return SerializerBuilder -- The builder instance.
 	]=]
 	function __self.int16WithName(valueName: string)
 		table.insert(actionList, {
@@ -137,7 +130,7 @@ function serializerBuilder.Create()
 
 		@within SerializerBuilder
 		@param valueName string -- The index that this int8 will have when it is deserialized into a table.
-		@return builder SerializerBuilder -- The builder instance.
+		@return SerializerBuilder -- The builder instance.
 	]=]
 	function __self.int8WithName(valueName: string)
 		table.insert(actionList, {
@@ -155,7 +148,7 @@ function serializerBuilder.Create()
 
 		@within SerializerBuilder
 		@param valueName string -- The index that this float32 will have when it is deserialized into a table.
-		@return builder SerializerBuilder -- The builder instance.
+		@return SerializerBuilder -- The builder instance.
 	]=]
 	function __self.floatWithName(valueName: string)
 		table.insert(actionList, {
@@ -173,7 +166,7 @@ function serializerBuilder.Create()
 
 		@within SerializerBuilder
 		@param valueName string -- The index that this double/float64 will have when it is deserialized into a table.
-		@return builder SerializerBuilder -- The builder instance.
+		@return SerializerBuilder -- The builder instance.
 	]=]
 	function __self.doubleWithName(valueName: string)
 		table.insert(actionList, {
@@ -195,7 +188,7 @@ function serializerBuilder.Create()
 
 		@param valueName string -- The index that this string will have when it is deserialized into a table.
 		@param maxStringSize number -- The length of the string, used to cap buffers from becoming too big.
-		@return builder SerializerBuilder -- The builder instance.
+		@return SerializerBuilder -- The builder instance.
 	]=]
 	function __self.stringWithName(valueName, maxStringSize: number)
 		table.insert(actionList, {
@@ -216,7 +209,7 @@ function serializerBuilder.Create()
 
 		@within SerializerBuilder
 		@param valueName string -- The index that this boolean will have when it is deserialized into a table.
-		@return builder SerializerBuilder -- The builder instance.
+		@return SerializerBuilder -- The builder instance.
 	]=]
 	function __self.booleanWithName(valueName: string)
 		table.insert(actionList, {
@@ -234,7 +227,7 @@ function serializerBuilder.Create()
 
 		@within SerializerBuilder
 		@param valueName string -- The index that this vector will have when it is deserialized into a table.
-		@return builder SerializerBuilder -- The builder instance.
+		@return SerializerBuilder -- The builder instance.
 	]=]
 	function __self.vectorWithName(valueName: string)
 		table.insert(actionList, {
@@ -252,10 +245,10 @@ function serializerBuilder.Create()
 
 		@within SerializerBuilder
 		@param valueName string -- The index that this table will have when it is deserialized into a table.
-		@param tableSerializer Serializer -- The serializer that the table will use when being turned from a buffer into a table and vice-versa.
-		@return builder SerializerBuilder -- The builder instance.
+		@param tableSerializer Serializer<U> -- The serializer that the table will use when being turned from a buffer into a table and vice-versa.
+		@return SerializerBuilder -- The builder instance.
 	]=]
-	function __self.tableWithName(valueName, tableSerializer: Serializer)
+	function __self.tableWithName<U>(valueName, tableSerializer: types.Serializer<U>)
 		table.insert(actionList, {
 			DeserializedName = valueName,
 			ActionType = "table",
@@ -273,7 +266,7 @@ function serializerBuilder.Create()
 		@within SerializerBuilder
 		@param valueName string -- The index that this buffer will have when it is deserialized into a table.
 		@param bufSize number? -- The size the buffer will have. If not specified, the size will be of 0x1000, or 4096 bytes.
-		@return builder SerializerBuilder -- The builder instance.
+		@return SerializerBuilder -- The builder instance.
 	]=]
 	function __self.bufferWithName(valueName, bufSize: number?)
 		table.insert(actionList, {
@@ -291,7 +284,7 @@ function serializerBuilder.Create()
 		return bufferSize
 	end
 
-	function __self.build(): Serializer
+	function __self.build(): types.Serializer<T>
 		--[=[
 			@class Serializer
 
@@ -304,7 +297,7 @@ function serializerBuilder.Create()
 			@within Serializer
 
 			@error "Buffer cannot be deserialized: Wrong size" -- The given buffer is not the size that the Serializer predicts it to be.
-			@return table { [string]: any } -- The deserialized result
+			@return T -- The deserialized result
 		]=]
 		function serializer.Deserialize(buf: buffer)
 			local nTable = {}
@@ -323,15 +316,15 @@ function serializerBuilder.Create()
 				end
 			end
 
-			return nTable
+			return (nTable :: any) :: T
 		end
 
 		--[=[
 			Obtains the max size of the buffer in bytes.
 			@within Serializer
 
-			@private
-			@return bufferSize number -- The max size, in bytes, of the buffer when it is serialized.
+			@ignore
+			@return number -- The max size, in bytes, of the buffer when it is serialized.
 		]=]
 		function serializer.GetBufferSize(): number
 			return bufferSize
@@ -343,13 +336,13 @@ function serializerBuilder.Create()
 
 			@error "Attempted to write a value of type 'X' when the serializer action that serializes parameter 'index_of_table_being_serialized' expects a type that fits the description of a Z" -- Happens when the serializer attempts to write the wrong type using the wrong write operation. Caused by malformed tables 
 
-			@param obj { [string]: any } -- The table to convert into a buffer
-			@return actions { Action } -- Array of type Action describing how to serialize the table into a buffer
+			@param obj T -- The table to convert into a buffer
+			@return { Action } -- Array of type Action describing how to serialize the table into a buffer
 		]=]
-		function serializer.Serialize(obj: { [string]: any })
+		function serializer.Serialize(obj: T)
 			local foundDeserializerMatches = 0
 			-- local recursive = function(t: { [string]: any }) end
-			for idx, _ in obj do
+			for idx, _ in (obj :: any) :: { [string]: any } do
 				for _, deserializerAction in actionList do
 					if deserializerAction.DeserializedName == idx then
 						foundDeserializerMatches += 1
@@ -369,8 +362,8 @@ function serializerBuilder.Create()
 			buffer.writef64(buf, 0x0, bufferSize)
 
 			for _, action in actionList do
-				local writeValue = obj[action.DeserializedName]
-				if not obj[action.DeserializedName] then
+				local writeValue = ((obj :: any) :: { [string]: any })[action.DeserializedName]
+				if not ((obj :: any) :: { [string]: any })[action.DeserializedName] then
 					if action.ActionType == "int" or action.ActionType == "float" then
 						writeValue = 0
 					elseif action.ActionType == "boolean" then
@@ -443,14 +436,14 @@ function serializerBuilder.Create()
 			Returns the list of actions the Serializer will do to convert the given table into a buffer.
 			@within Serializer
 			
-			@private
-			@return actions { Action } -- Array of type Action describing how to serialize the table into a buffer
+			@ignore
+			@return { Action } -- Array of type Action describing how to serialize the table into a buffer
 		]=]
-		function serializer.GetActionList(): { Action }
+		function serializer.GetActionList(): { types.Action<T> }
 			return actionList
 		end
 
-		return serializer
+		return (serializer :: any) :: types.Serializer<T>
 	end
 
 	return __self

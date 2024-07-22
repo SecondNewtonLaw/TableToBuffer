@@ -1,4 +1,7 @@
 --!strict
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local TypeDefinitions = require(ReplicatedStorage.Packages.TableToBuffer.TypeDefinitions)
 local SerializerBuilder = require(script.SerializerBuilder)
 
 --[=[
@@ -14,10 +17,10 @@ local TableToBuffer = {}
 	@error "This function only accepts tables" when argument t is not a table
 	@error "Only maps of { [string]: boolean | number | string | table | vector (Vector3) | buffer } are supported. Mixed tables are not supported, neither are arrays." When the given map contains keys that are not only strings or contains non-primitive data types as values.
 
-	@param t The table to make a binary serializer for
-	@return serializer Serializer A serializer that can make the given table into a buffer
+	@param t T -- The table to make a binary serializer for
+	@return Serializer<T> -- A serializer that can make the given table into a buffer
 ]=]
-function TableToBuffer.GetSerializerForTable(t: { [string]: any })
+function TableToBuffer.GetSerializerForTable<T>(t: T): TypeDefinitions.Serializer<T>
 	assert(type(t) == "table", "This function only accepts tables")
 	local serializerBuilder = SerializerBuilder.Create()
 
@@ -53,7 +56,7 @@ function TableToBuffer.GetSerializerForTable(t: { [string]: any })
 		end
 	end
 
-	return serializerBuilder.build()
+	return serializerBuilder.build() :: TypeDefinitions.Serializer<T>
 end
 
 --[=[
@@ -63,7 +66,7 @@ end
 	@error "This function does not support arrays or mixed tables." -- The table can only contain strings.
 	@param tbl T -- The table to represent as a buffer.
 
-	@return tableAsBuffer T -- A table with its __index metatable modified so that indexes access the buffer to write and read data.
+	@return T -- A table with its __index metatable modified so that indexes access the buffer to write and read data.
 ]=]
 function TableToBuffer.TableAsBuffer<T>(tbl: T): T
 	for i, _ in (tbl :: any) :: { [string]: any } do
@@ -174,7 +177,7 @@ end
 	Gets a Serializer/Deserializer builder.
 
 	@within TableToBuffer
-	@return builder SerializerBuilder -- A builder that allows you to create a Serializable using a builder-style API
+	@return SerializerBuilder -- A builder that allows you to create a Serializable using a builder-style API
 ]=]
 function TableToBuffer.GetDeserializerBuilder()
 	return SerializerBuilder.Create()
