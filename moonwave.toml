@@ -1,0 +1,21 @@
+title = "TableToBuffer"  # From Git
+gitRepoUrl = "https://github.com/SecondNewtonLaw/TableToBuffer" # From Git
+
+gitSourceBranch = "dev"
+changelog = true
+classOrder = []
+
+[docusaurus]
+onBrokenLinks = "throw"
+onBrokenMarkdownLinks = "warn"
+
+# From git:
+organizationName = "SecondNewtonLaw"
+projectName = "TableToBuffer"
+url = "https://SecondNewtonlaw.github.io"
+baseUrl = "/TableToBuffer"
+tagline = "A Luau table to buffer serializer."
+
+[footer]
+style = "dark"
+copyright = "Copyright © 2024 SecondNewtonLaw. Built with Moonwave and Docusaurus"
