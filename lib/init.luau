@@ -1,7 +1,5 @@
 --!strict
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local TypeDefinitions = require(ReplicatedStorage.Packages.TableToBuffer.TypeDefinitions)
+local TypeDefinitions = require(script.TypeDefinitions)
 local SerializerBuilder = require(script.SerializerBuilder)
 
 --[=[

@@ -1,0 +1,22 @@
+{
+    "name": "TableToBuffer-dev",
+    "tree": {
+        "$className": "DataModel",
+        "ReplicatedStorage": {
+            "Packages": {
+                "$path": "Packages",
+                "TableToBuffer": {
+                    "$path": "lib/"
+                }
+            }
+        },
+        "StarterPlayer": {
+            "StarterPlayerScripts": {
+                "$className": "StarterPlayerScripts",
+                "tests": {
+                    "$path": "test/"
+                }
+            }
+        }
+    }
+}
