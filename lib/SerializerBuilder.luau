@@ -200,7 +200,7 @@ function serializerBuilder.Create<T>()
 
 		-- uint32 = string_size
 		-- ...    = string
-		bufferSize += 0x4 + maxStringSize
+		bufferSize += 0x1 + 0x4 + maxStringSize
 		return __self
 	end
 

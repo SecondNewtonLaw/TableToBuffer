@@ -1,3 +1,5 @@
+--!nocheck
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local tableToBuffer = require(ReplicatedStorage.Packages.TableToBuffer)
@@ -62,11 +64,11 @@ do
 		NestedSerializer = table.clone(table_1),
 	}
 
-	print(buffer.tostring(serializer_1.Serialize(table_1)))
-	print(serializer_1.Deserialize(serializer_1.Serialize(table_1)))
+	--print(buffer.tostring(serializer_1.Serialize(table_1)))
+	--print(serializer_1.Deserialize(serializer_1.Serialize(table_1)))
 
-	print(buffer.tostring(serializer_2.Serialize(table_2)))
-	print(serializer_2.Deserialize(serializer_2.Serialize(table_2)))
+	--print(buffer.tostring(serializer_2.Serialize(table_2)))
+	--print(serializer_2.Deserialize(serializer_2.Serialize(table_2)))
 end
 
 do
@@ -78,13 +80,13 @@ do
 				Key = string.rep("C", 1024),
 			},
 		},
-		ThisIsAnotherIndex = "Hello!",
+		ThisIsAnotherIndex = "Hello, World!",
 		ThisIsABoolean = false,
 	})
 	print(tostring(tableAsBuffer))
 
 	tableAsBuffer.ThisIsAnIndex = {
-		AnotherIndex = "New Data!",
+		AnotherIndex = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 		AnotherExtraIndex = { Key = string.rep("A", 1024) },
 	}
 
@@ -93,7 +95,7 @@ do
 	tableAsBuffer.ThisIsABoolean = true
 	print(tostring(tableAsBuffer))
 	tableAsBuffer.ThisIsAnIndex = {
-		AnotherIndex = "Adios",
+		AnotherIndex = "THIS IS A NORMAL STRING",
 		AnotherExtraIndex = {
 			Key = string.rep("B", 1024),
 		},

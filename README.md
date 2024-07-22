@@ -7,7 +7,7 @@ All of the serializers and deserializers were manually written, no automatic too
 ### Currently serializable primitives:
     - boolean
     - number (Automatically serializable as a float64 if not given a specific size)
-    - string
+    - string (May be compressesd using lzw when benefitial)
     - vector (Vector3's on Roblox)
     - table
     - buffer
@@ -21,7 +21,7 @@ Parsing `userdata` value types is not currently on the roadmap, and it may be tr
 ## How to install?
 - Download the `.rbxm` file on the latest release of this project.
 - Using wally:
-    - Add `tabletobuffer = "secondnewtonlaw/tabletobuffer@0.1.1"`
+    - Add `tabletobuffer = "secondnewtonlaw/tabletobuffer@0.1.2"`
 
 ## [How to use this?](https://secondnewtonlaw.github.io/TableToBuffer/)
 
