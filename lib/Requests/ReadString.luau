@@ -17,7 +17,7 @@ function request.create(offset, maxStringSize, compressionAlgorithm: "NoCompress
 	assert(typeof(offset) == "number", "offset must be a number.")
 	assert(maxStringSize <= 1024, "maxStringSize is too big, serializer will not continue")
 	assert(
-		(
+		not (
 			compressionAlgorithm ~= "zlib"
 			and compressionAlgorithm ~= "lzw"
 			and compressionAlgorithm ~= "deflate"

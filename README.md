@@ -21,7 +21,7 @@ Parsing `userdata` value types is not currently on the roadmap, and it may be tr
 ## How to install?
 - Download the `.rbxm` file on the latest release of this project.
 - Using wally:
-    - Add `tabletobuffer = "secondnewtonlaw/tabletobuffer@0.1.3"`
+    - Add `tabletobuffer = "secondnewtonlaw/tabletobuffer@0.1.4"`
 
 ## [How to use this?](https://secondnewtonlaw.github.io/TableToBuffer/)
 
